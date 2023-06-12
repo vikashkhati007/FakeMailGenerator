@@ -2,7 +2,7 @@ import Image from "next/image"
 const MailBox = () => {
   return (
     <>
-      <div className="w-1/2 h-[80%] border overflow-y-scroll overflow-x-hidden custom-scrollbar">
+      <div className="w-1/2 h-[90%] border overflow-y-scroll overflow-x-hidden custom-scrollbar">
         <div className="mailboxtitle m-2 gap-2 flex justify-center items-center">
         <Image src={"/mail.png"} width={30} height={30} alt="mailbox" ></Image>
         <span className="inbox text-lg opacity-80">Inbox</span>
