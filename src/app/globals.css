@@ -1,27 +1,62 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&display=swap');
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+body{
+  background-color: white;
+  
+}
+
+.title{
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+.button{
+  font-family: 'Urbanist', sans-serif;
+}
+
+.inbox{
+  font-family: 'Righteous', cursive;
+}
+
+.mailtitle{
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* CSS for the custom scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(136, 136, 136, 0.4) rgba(241, 241, 241, 0.4);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Decreased width for scrollbar */
+  background-color: rgba(241, 241, 241, 0.4);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(136, 136, 136, 0.4);
+  border-radius: 15px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(85, 85, 85, 0.6);
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: rgba(241, 241, 241, 0.4);
 }
