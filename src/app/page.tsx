@@ -142,14 +142,15 @@ const Home = () => {
           </div>
           {messageShow ? (
             <>
+              <div onClick={(()=>{setMessageShow(false)})} className="w-full bg-[#0099FF] pt-5 pl-5">
+              <Button label="Go Back" imgsrc="/arrow.png" className="border"></Button>
+            </div>
             <MessagePageBox
               from={messageFrom}
               subject={messageSubject}
               body={messageTextBody}
             />
-            <div onClick={(()=>{setMessageShow(false)})} className="w-full bg-[#0099FF]">
-            <Button label="Go Back" imgsrc="/arrow.png" className="border"></Button>
-            </div>
+          
             </> ) : (
             message.map((d: any) => (
               <div
