@@ -7,7 +7,6 @@ import RandomEmailBox from "./components/RandomEmailBox";
 import Title from "./components/Title";
 import About from "./components/About";
 import MessagePageBox from "./components/MessagePageBox";
-
 const Home = () => {
   const [refresh, setRefresh] = useState(false);
   const [del, setDelete] = useState(false);
@@ -98,9 +97,7 @@ const Home = () => {
             imgsrc={"/copyicon.png"}
           />
           <Button
-            onClick={() => {
-              setDelete(!del);
-            }}
+          onClick={(()=>{window.location.reload()})}
             label={"Delete Email"}
             imgsrc={"/delete.png"}
           />
