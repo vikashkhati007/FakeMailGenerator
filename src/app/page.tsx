@@ -9,8 +9,11 @@ import About from "./components/About";
 import Link from "next/link";
 const Home = () => {
   const [refresh, setRefresh] = useState(false);
+  const [del, setDelete] = useState(false);
   const [email, setEmail] = useState("");
   const [message, setMessageData] = useState([]);
+  const [username, setusername] = useState("");
+  const [domain, setdomain] = useState("");
   useEffect(() => {
     async function getEmail() {
       const res = await fetch(
@@ -21,29 +24,42 @@ const Home = () => {
       const email = randomemail[0];
       const atIndex = email.indexOf("@");
       const username = email.substring(0, atIndex);
+      setusername(username);
       const domain = email.substring(atIndex + 1);
+      setdomain(domain);
+   
       setInterval(async()=>{
-        if(refresh){
-          const res2 = await fetch(
-            `https://www.1secmail.com/api/v1/?action=getMessages&login=${username}&domain=${domain}`
-          );
-          const messagedata = await res2.json();
-          setMessageData(messagedata);
-        }
         const res2 = await fetch(
           `https://www.1secmail.com/api/v1/?action=getMessages&login=${username}&domain=${domain}`
         );
         const messagedata = await res2.json();
         setMessageData(messagedata);
       },100);
- 
-      
-     
     }
     getEmail();
-  }, []);
+  }, [del]);
 
+async function refreshMessage(){
+    const res2 = await fetch(
+      `https://www.1secmail.com/api/v1/?action=getMessages&login=${username}&domain=${domain}`
+    );
+    const messagedata = await res2.json();
+    setMessageData(messagedata);
+    console.log("refreshit")
+}
+ 
+  function copyToClipboard(email:any) {
+    var input = document.createElement("input");
+    input.value = email;
+    document.body.appendChild(input);
+    input.select();
+    input.setSelectionRange(0, 99999); /* For mobile devices */
+    document.execCommand("copy");
+    document.body.removeChild(input);
+  }
+  
 
+  
 
   return (
     <div className="w-[100%] h-screen custom-scrollbar overflow-y-scroll">
@@ -51,8 +67,8 @@ const Home = () => {
         <Title />
         <RandomEmailBox value={email} />
         <div className="buttoncontainer flex gap-5">
-          <Button label={"Copy Email"} imgsrc={"/copyicon.png"} />
-          <Button label={"Delete Email"} imgsrc={"/delete.png"} />
+          <Button onClick={(()=>{copyToClipboard(email)})} label={"Copy Email"} imgsrc={"/copyicon.png"} />
+          <Button onClick={(()=>{!del?setDelete(true):setDelete(false)})} label={"Delete Email"} imgsrc={"/delete.png"} />
         </div>
       </div>
       <div className="w-full flex justify-center items-center mt-5">
@@ -67,7 +83,8 @@ const Home = () => {
               setRefresh(true);
               setTimeout(() => {
                 setRefresh(false);
-              }, 2000);
+                refreshMessage();
+              }, 1000);
             }}
           />
         ) : (
@@ -91,11 +108,11 @@ const Home = () => {
           {
             message.map((d:any)=>{
               return(
-                <>
-                <Link href={{ pathname: '/messagebox', query: { id: d.id, email } }}>
+                <div key={d.id}>
+                <Link href={`/messagebox?id=${d.id}&username=${username}&domain=${domain}`}>
                 <MailBox email={d.from} subject={d.subject} time={d.date}/>
                 </Link>
-                </>
+                </div>
               )
             })
 
