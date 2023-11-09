@@ -16,7 +16,7 @@ Welcome to Fake Mail Generator, your go-to tool for generating temporary email a
 
 ## 🤝 Contributing
 
-If you're excited to contribute, check out our [CONTRIBUTE.md](CONTRIBUTE.md) for guidelines.
+If you're excited to contribute, check out our [CONTRIBUTE.md](CONTRIBUTING.md) for guidelines.
 
 ## 🐛 Bug Reports and 🚀 Feature Requests
 
