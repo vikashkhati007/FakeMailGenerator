@@ -1,0 +1,33 @@
+# Fake Mail Generator
+
+Welcome to Fake Mail Generator, a tool to generate temporary email addresses for testing and development purposes.
+
+## Features
+
+- Generate random and disposable email addresses.
+- Use generated email addresses for testing without using your real email.
+- Easy to use and navigate interface.
+
+## Getting Started
+
+1. Visit [Fake Mail Generator](https://fake-mail-generator.vercel.app/).
+2. Click on the "Generate" button to get a random email address.
+3. Copy the generated email address and use it for your testing needs.
+
+## Contributing
+
+If you'd like to contribute to this project, please check the [CONTRIBUTE.md](CONTRIBUTE.md) file for guidelines.
+
+## Bug Reports and Feature Requests
+
+If you encounter any issues or have ideas for new features, please open an issue on our [GitHub repository](https://github.com/your-username/fake-mail-generator).
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Thanks to contributors who have helped make this project better.
+
+Happy testing!
