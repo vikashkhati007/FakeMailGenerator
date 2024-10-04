@@ -164,14 +164,14 @@ export default function Home() {
           transition={{ duration: 0.5 }}
           className="text-center mb-8"
         >
-          <h1 className="text-4xl font-extrabold tracking-tight mb-2">Secure Temporary Email</h1>
+          <h1 className="text-4xl  font-extrabold tracking-tight mb-2">Secure Temporary Email</h1>
           <p className="text-blue-300">Your shield against spam, made simple.</p>
         </motion.div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <Card className="col-span-1 lg:col-span-2 bg-gray-800 border-gray-700">
             <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-t-lg">
               <CardTitle className="text-2xl font-bold flex items-center justify-between">
-                <div className="flex items-center">
+                <div className="flex items-center text-xl md:text-2xl">
                   <MailIcon className="w-6 h-6 mr-2" />
                   Your Temporary Inbox
                 </div>
