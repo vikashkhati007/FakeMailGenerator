@@ -22,24 +22,29 @@ const Home = () => {
   useEffect(() => {
     async function getEmail() {
       const res = await fetch(
-        "https://www.1secmail.com/api/v1/?action=genRandomMailbox&count=1"
+        "http://localhost:3000/api/"
       );
-      const randomEmail = await res.json();
+      const randomEmail = await res.text();
       setEmail(randomEmail);
-      const email = randomEmail[0];
+      const email = randomEmail;
       const atIndex = email.indexOf("@");
       const username = email.substring(0, atIndex);
       setUsername(username);
       const domain = email.substring(atIndex + 1);
       setDomain(domain);
 
-      const interval = setInterval(async () => {
-        const res2 = await fetch(
-          `https://www.1secmail.com/api/v1/?action=getMessages&login=${username}&domain=${domain}`
-        );
-        const messageData = await res2.json();
-        setMessageData(messageData);
-      }, 100);
+      //Message Retreival
+          const interval = setInterval(async () => {
+          const res2 = await fetch("/api", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email: email}),
+          });
+            const messageData = await res2.json();
+            setMessageData(messageData);
+          }, 1000);
 
       return () => {
         clearInterval(interval);
@@ -50,9 +55,13 @@ const Home = () => {
   }, [del]);
 
   async function refreshMessage() {
-    const res2 = await fetch(
-      `https://www.1secmail.com/api/v1/?action=getMessages&login=${username}&domain=${domain}`
-    );
+    const res2 = await fetch("/api", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ email: email}),
+});
     const messageData = await res2.json();
     setMessageData(messageData);
   }
@@ -68,19 +77,15 @@ const Home = () => {
   }
 
   function whichMessageClicked(d: any) {
-    fetch(
-      `https://www.1secmail.com/api/v1/?action=readMessage&login=${username}&domain=${domain}&id=${d.id}`
-    )
-      .then((res) => res.json())
-      .then((messagedata) => {
-        setMessageFrom(messagedata.from);
-        setMessageTextBody(messagedata.textBody);
-        setMessageSubject(messagedata.subject);
-        setMessageShow(true);
-      })
-      .catch((error) => {
-        console.log("Error reading message:", error);
-      });
+// Set Message Refreshed Data 
+     const data = message.filter((item: any) => item.id === d);
+     //@ts-ignore
+setMessageFrom(data[0].from);
+     //@ts-ignore
+setMessageTextBody(data[0].body_text);
+     //@ts-ignore
+setMessageSubject(data[0].subject);
+setMessageShow(true);
   }
 
   return (
@@ -153,7 +158,7 @@ const Home = () => {
               <div
                 key={d.id}
                 onClick={() => {
-                  whichMessageClicked(d);
+                  whichMessageClicked(d.id);
                 }}
               >
                 <MailBox email={d.from} subject={d.subject} time={d.date} />
