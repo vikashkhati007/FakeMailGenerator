@@ -22,7 +22,7 @@ const Home = () => {
   useEffect(() => {
     async function getEmail() {
       const res = await fetch(
-        "http://localhost:3000/api/"
+        "https://fake-mail-generator.vercel.app/api/"
       );
       const randomEmail = await res.text();
       setEmail(randomEmail);
@@ -55,7 +55,7 @@ const Home = () => {
   }, [del]);
 
   async function refreshMessage() {
-    const res2 = await fetch("/api", {
+    const res2 = await fetch("https://fake-mail-generator.vercel.app/api", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
