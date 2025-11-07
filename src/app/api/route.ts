@@ -18,7 +18,7 @@ export async function GET() {
         "Sec-Fetch-Site": "same-site",
         Priority: "u=4",
       },
-      referrer: "https://temp-mail.io/",
+      referrer: process.env.REFERRERURL,
       body: '{"min_name_length":10,"max_name_length":10}',
       method: "POST",
       mode: "cors",
@@ -51,7 +51,7 @@ export async function POST(req: Request) {
         "Sec-Fetch-Site": "same-site",
         Priority: "u=4",
       },
-      referrer: "https://temp-mail.io/",
+      referrer: process.env.REFERRERURL,
       method: "GET",
       mode: "cors",
     }
